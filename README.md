@@ -1,6 +1,6 @@
-# Regressão em Educação com Spark ML — OULAD (200 mil linhas)
+# Regressão em Educação com Spark ML OULAD (200 mil linhas)
 
-Projeto da disciplina **Processamento de Dados Massivos**, professor **Alexandre Roriz**.
+Projeto da disciplina **Processaments de Dados Massivos**, professor **Alexandre Roriz**.
 
 ## Objetivo
 Predizer a quantidade de cliques por observação dos estudantes em recursos de um
@@ -10,7 +10,6 @@ ambiente virtual de aprendizagem com **regressão linear do Spark ML**.
 - Kaggle: https://www.kaggle.com/datasets/rocki37/open-university-learning-analytics-dataset
 - Fonte primária: https://research.stem.open.ac.uk/ouanalyse/dataset/
 - Artigo: https://doi.org/10.1038/sdata.2017.171
-- Licença da fonte primária: CC BY 4.0.
 - `studentVle.csv`: **10.655.280 linhas** na versão publicada (6 colunas).
 - `vle.csv`: 6.364 linhas de metadados na versão publicada.
 
@@ -22,9 +21,7 @@ semente **42**. Os registros selecionados são copiados para
 `dados_locais/studentVle_amostra_200000.csv`. Depois disso, **o Spark só lê a
 amostra de 200 mil linhas**, além do arquivo pequeno de metadados.
 
-O processo de seleção **não carrega os 10,6 milhões de registros no Spark** e
-não utiliza Pandas para ler o arquivo grande. O CSV amostrado é reutilizado
-em novas execuções na mesma sessão graças ao manifesto de cache.
+O processo de seleção **não carrega os 10,6 milhões de registros no Spark**
 
 **Nota:** como a amostragem é por registro, um aluno pode ter parte do histórico
 fora da amostra. A modelagem não usa histórico individual. O split treino/teste
@@ -44,7 +41,6 @@ A limpeza/consolidação pode reduzir ligeiramente o número de linhas modeladas
 - A ingestão no Spark já é limitada a 200.000 linhas.
 - `spark.sql.shuffle.partitions` foi reduzido para **8**.
 - O ajuste compara **dois** valores de `regParam` (0.01, 0.1), sem grade extensa.
-- Regressão L2 com `solver='normal'` para poucos atributos.
 - Apenas uma etapa final de ajuste do Pipeline nos dados de treino completos.
 - Gráficos com agregações em Spark ou pequeno subconjunto de predições.
 
@@ -58,8 +54,3 @@ atributos → split por estudante → StringIndexer → OneHotEncoder → Vector
 - O dataset original sustenta a **justificativa de Big Data**; a amostra é um
   recorte operacional para viabilizar treinamento em equipamentos modestos.
 - `sum_click` mede interações digitais; não é nota nem desempenho acadêmico.
-- Métricas reais dependem da execução do notebook, não foram antecipadas.
-
-## Entrega
-Enviar o **link do repositório GitHub**, conforme o enunciado. Os arquivos de
-dados e os modelos treinados permanecem locais e são ignorados pelo Git.
